@@ -15,6 +15,24 @@
                 return false;
             }
         }
+
+        // js 에서 호출할 메소드
+        function jsToNativeEventCall() {
+            let messageToSend = document.getElementById("messageToSend")
+            const sendData = { message: messageToSend.value };
+            try {
+                window.webkit.messageHandlers.callbackHandler.postMessage(sendData);
+                messageToSend.value = ""
+            } catch (err) {
+                alert(err);
+            }
+        }
+
+        // 네이트브에서 호출할 메소드
+        function nativeToJsEventCall(messgae) {
+            let nativeInput = document.getElementById("native_input")
+            nativeInput.value = messgae;
+        }
     </script>
 
 </head>
